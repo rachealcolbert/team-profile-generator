@@ -59,7 +59,7 @@ function createManager() {
 
         },
     ])
-    addEmployee();
+    this.addEmployee();
 };
 // function asking to make a new employee: Engineer or Intern or nah
 function addEmployee() {
