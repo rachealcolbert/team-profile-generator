@@ -69,27 +69,30 @@ function addEmployee() {
             type: 'checkbox',
             name: 'addEmployee',
             message: "Do you want to add a new employee",
-            choices: [{
-                    name: 'Yes',
-                },
-                {
-                    name: 'No',
-                }
-            ]
-        },
-        {
-            type: 'checkbox',
-            name: 'role',
-            message: "What type of employee do you want to add?",
-            choices: [{
-                    name: 'Engineer',
-                },
-                {
-                    name: 'Intern',
-                }
-            ]
-        },
-    ])
+            choices: ['Yes', 'No']
+        }])
+        .then(({
+            addEmployee
+        }) => {
+            if (addEmployee === 'Yes') {
+
+                inquirer
+                    .prompt({
+                        type: 'checkbox',
+                        name: 'role',
+                        message: "What type of employee do you want to add?",
+                        choices: [{
+                                name: 'Engineer',
+                            },
+                            {
+                                name: 'Intern'
+                            }
+                        ]
+                    })
+            } else {
+                // need to add function
+            }
+        });
 };
 // function asking engineer questions 
 function createEngineer() {
