@@ -58,24 +58,38 @@ function createManager() {
             }
 
         },
-    ])
-    this.addEmployee();
+    ]).then(answers => {
+        console.log("answers: ", answers);
+        addEmployee();
+    });
 };
 // function asking to make a new employee: Engineer or Intern or nah
 function addEmployee() {
     inquirer.prompt([{
-        type: 'input',
-        name: 'name',
-        message: "What is the manager's name?",
-        validate: nameInput => {
-            if (nameInput) {
-                return true;
-            } else {
-                console.log("Please enter the manager's name.");
-            }
-            return false;
-        }
-    }, ])
+            type: 'checkbox',
+            name: 'addEmployee',
+            message: "Do you want to add a new employee",
+            choices: [{
+                    name: 'Yes',
+                },
+                {
+                    name: 'No',
+                }
+            ]
+        },
+        {
+            type: 'checkbox',
+            name: 'role',
+            message: "What type of employee do you want to add?",
+            choices: [{
+                    name: 'Engineer',
+                },
+                {
+                    name: 'Intern',
+                }
+            ]
+        },
+    ])
 };
 // function asking engineer questions 
 function createEngineer() {
