@@ -77,10 +77,13 @@ function addEmployee() {
                 name: 'employee',
                 message: "Do you want to add an intern or engineer?",
                 choices: ['Intern', 'Engineer'],
+            }).then(res => {
+                if (res.employee == 'Intern') {
+                    createIntern()
+                } else {
+                    createEngineer()
+                };
             })
-    }).then(res => {
-        if (res.createEmployee == 'Intern')
-            createIntern()
     })
 };
 
