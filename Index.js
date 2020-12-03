@@ -66,38 +66,34 @@ function createManager() {
 // function asking to make a new employee: Engineer or Intern or nah
 function addEmployee() {
     inquirer.prompt([{
-            type: 'checkbox',
-            name: 'addEmployee',
-            message: "Do you want to add a new employee",
-            choices: ['Yes', 'No']
-        }])
-        .then(({
-            addEmployee
-        }) => {
-            if (addEmployee === 'Yes') {
-
-                inquirer
-                    .prompt({
-                        type: 'checkbox',
-                        name: 'role',
-                        message: "What type of employee do you want to add?",
-                        choices: [{
-                                name: 'Engineer',
-                            },
-                            {
-                                name: 'Intern'
-                            }
-                        ]
-                    })
-            } else {
-                // need to add function
-            }
-        });
+        type: 'checkbox',
+        name: 'addEmployee',
+        message: "Do you want to add a new employee",
+        choices: ['Yes', 'No']
+    }, ]).then(res => {
+        if (res.addEmployee == 'Yes')
+            inquirer.prompt({
+                type: 'list',
+                name: 'employee',
+                message: "Do you want to add an intern or engineer?",
+                choices: ['Intern', 'Engineer'],
+            })
+    }).then(res => {
+        if (res.createEmployee == 'Intern')
+            createIntern()
+    })
 };
+
+
 // function asking engineer questions 
 function createEngineer() {
-
-};
+    inquirer.prompt([{
+        type: 'checkbox',
+        name: 'addEmployee',
+        message: "Do you want to add a new employee",
+        choices: ['Yes', 'No']
+    }])
+}
 // function asking intern questions 
 function createIntern() {
 
