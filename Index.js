@@ -90,12 +90,46 @@ function addEmployee() {
 
 // function asking engineer questions 
 function createEngineer() {
+    console.log('Answer the following questions to add an engineer to your team.')
     inquirer.prompt([{
-        type: 'checkbox',
-        name: 'addEmployee',
-        message: "Do you want to add a new employee",
-        choices: ['Yes', 'No']
-    }])
+            type: 'input',
+            name: 'name',
+            message: "What is the engineer's name?",
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log("Please enter the engineer's name.");
+                }
+                return false;
+            }
+        },
+        {
+            type: 'number',
+            name: 'id',
+            message: "What is the engineer's id?",
+            validate: idInput => {
+                if (idInput) {
+                    return true;
+                } else {
+                    console.log("Please enter the engineer's id.");
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: "What is the engineer's email?",
+        },
+        {
+            type: 'input',
+            name: 'gitHubUsername',
+            message: "What is the engineer's GitHub username?",
+        },
+    ]).then(answers => {
+        console.log("answers: ", answers);
+        addEmployee();
+    });
 }
 // function asking intern questions 
 function createIntern() {
