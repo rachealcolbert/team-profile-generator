@@ -133,6 +133,46 @@ function createEngineer() {
 }
 // function asking intern questions 
 function createIntern() {
+    console.log('Answer the following questions to add an intern to your team.')
+    inquirer.prompt([{
+            type: 'input',
+            name: 'name',
+            message: "What is the intern's name?",
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log("Please enter the intern's name.");
+                }
+                return false;
+            }
+        },
+        {
+            type: 'number',
+            name: 'id',
+            message: "What is the intern's id?",
+            validate: idInput => {
+                if (idInput) {
+                    return true;
+                } else {
+                    console.log("Please enter the intern's id.");
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: "What is the intern's email?",
+        },
+        {
+            type: 'input',
+            name: 'school',
+            message: "What is the intern's school?",
+        },
+    ]).then(answers => {
+        console.log("answers: ", answers);
+        addEmployee();
+    });
 
 };
 
