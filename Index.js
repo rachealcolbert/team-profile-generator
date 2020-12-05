@@ -7,6 +7,10 @@ const Intern = require('./lib/Intern');
 const {
     validate
 } = require('@babel/types');
+const members = [];
+const generateMarkdown = require('./lib/generateMarkdown');
+const DIRECTORY_PATH = path.resolve(__dirname, 'dist');
+const dist = path.join(DIRECTORY_PATH, 'page.html');
 
 
 // function to start generator
@@ -59,6 +63,9 @@ function createManager() {
 
         },
     ]).then(answers => {
+        const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
+        members.push(manager);
+        console.log(members);
         console.log("answers: ", answers);
         return addEmployee();
     });
@@ -131,6 +138,8 @@ function createEngineer() {
             message: "What is the engineer's GitHub username?",
         },
     ]).then(answers => {
+        const engineer = new Engineer(answers.name, answers.id, answers.email, answers.gitHubUsername);
+        members.push(engineer);
         console.log("answers: ", answers);
         return addEmployee();
     });
@@ -174,6 +183,8 @@ function createIntern() {
             message: "What is the intern's school?",
         },
     ]).then(answers => {
+        const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
+        members.push(intern);
         console.log("answers: ", answers);
         return addEmployee();
     });
@@ -183,7 +194,8 @@ function createIntern() {
 
 // function to write html file
 function writeToFile(fileName, data) {
-    return fs.writeFileSync(path.join(__dirname, fileName), data)
+    fs.writeFileSync(dist, generateMarkdown(members), 'utf-8')
 }
+
 
 startGenerator();
