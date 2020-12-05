@@ -15,7 +15,7 @@ function startGenerator() {
 };
 // function to ask the manager questions 
 function createManager() {
-    inquirer.prompt([{
+    return inquirer.prompt([{
             type: 'input',
             name: 'name',
             message: "What is the manager's name?",
@@ -60,12 +60,12 @@ function createManager() {
         },
     ]).then(answers => {
         console.log("answers: ", answers);
-        addEmployee();
+        return addEmployee();
     });
 };
 // function asking to make a new employee: Engineer or Intern or nah
 function addEmployee() {
-    inquirer.prompt([{
+    return inquirer.prompt([{
         type: 'checkbox',
         name: 'addEmployee',
         message: "Do you want to add a new employee",
@@ -84,14 +84,18 @@ function addEmployee() {
                     createEngineer()
                 };
             })
-    })
-};
+        else {
+            return writeToFile()
+        }
+    });
+}
+
 
 
 // function asking engineer questions 
 function createEngineer() {
     console.log('Answer the following questions to add an engineer to your team.')
-    inquirer.prompt([{
+    return inquirer.prompt([{
             type: 'input',
             name: 'name',
             message: "What is the engineer's name?",
@@ -128,13 +132,13 @@ function createEngineer() {
         },
     ]).then(answers => {
         console.log("answers: ", answers);
-        addEmployee();
+        return addEmployee();
     });
 }
 // function asking intern questions 
 function createIntern() {
     console.log('Answer the following questions to add an intern to your team.')
-    inquirer.prompt([{
+    return inquirer.prompt([{
             type: 'input',
             name: 'name',
             message: "What is the intern's name?",
@@ -171,24 +175,15 @@ function createIntern() {
         },
     ]).then(answers => {
         console.log("answers: ", answers);
-        addEmployee();
+        return addEmployee();
     });
 
 };
 
 
 // function to write html file
-// function writeToFile(fileName, data) {
-//     return fs.writeFileSync(path.join(__dirname, fileName), data)
-// }
-// // function to initialize program
-// function init() {
-//     questions()
-//         .then(answers => {
-//             writeToFile('dist/page.html', generateMarkdown({
-//                 ...answers
-//             }));
-//         })
-// }
+function writeToFile(fileName, data) {
+    return fs.writeFileSync(path.join(__dirname, fileName), data)
+}
 
 startGenerator();
