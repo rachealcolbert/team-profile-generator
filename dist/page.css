@@ -1,0 +1,9 @@
+.jumbotron {
+    background: #EE5340;
+}
+
+.display-4,
+.lead {
+    color: white;
+    font-weight: bold;
+}
