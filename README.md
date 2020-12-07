@@ -8,6 +8,7 @@ This is a Node.js command-line application that takes in information about emplo
 
 ![Image of Application](dist/terminal.png)
 
+**Video Walk Through:** https://drive.google.com/file/d/1bGF9adR6CumQ0PKndaKaSfQU0TMRp6c9/view 
 ## Description
 
 When a user starts the application, they are prompted to enter the team manager’s name, employee ID, email address, and office number. After entering the team manager’s name, employee ID, email address, and office number, they are presented with a menu with the option to add an engineer or an intern or to finish building the team.
